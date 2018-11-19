@@ -24,46 +24,6 @@ function tableNSF(NSFData){
     cell5.text(row_data.TotalRDExpenditures);
   }
 }
-
-// function buildTrace(discipline){
-//   var trace = {
-//     x: Year,
-//     y: Expenditures,
-//     type: "scatter"
-//   };
-//   return trace;  
-// };
-
-// function buildChart(NSFData){
-//   // console.log(NSFData);
-//   all_data => {
-//     var Tracedata = discipline.map(y => {
-//         var d = rows.filter(r => r.discipline === y)
-
-//         return {
-//           type: 'scatter',
-//           name: y,
-//           x: d.map(r => r.Year),
-//           y: d.map(r => r.TotalRDExpenditures)
-//         }
-//       })
-  // for( var i = 0; i < NSFData.length; i++){
-  //   if (NSFData.AcademicDiscipline[i] != NSFData.AcademicDiscipline[i-1]);
-  //   Expend += expend.push(TotalRDExpenditures);
-  // var chart_data = NSFData[i];
-  // if(NSData.AcademicDiscipline[i+1] != NSFData.AcademicDiscipline[i]){
-  // //Build new trace
-  // var new_trace = buildTrace(NSFData);
-  // traces.push({"dis": last_dis, "trace": new_trace });
-  // //Reset list
-  // };
-  // };
-
-//   Plotly.newPlot('scatterchart',Tracedata)
-//       // return trace;  
-//   }
-// };
-  
 function filterUni(){
   // d3.event.preventDefault();
   var school = d3.select("#unifilter").property("value");
@@ -84,6 +44,7 @@ filteredData.forEach(function(UniData){
   });
 });
 };
+d3.selectAll("#clickbutton").on("click",filterUni);
 
 function renderTableAndChart(){
   //2)  Do filtering
@@ -94,72 +55,9 @@ function renderTableAndChart(){
 // //   buildChart(all_data);
 };
 
-d3.selectAll("#clickbutton").on("click",filterUni);
-
 //1) Download csv
 d3.csv('NSF_expenditures_nu.csv').then(function(NSFData){  
   all_data = NSFData;
   renderTableAndChart();
   // console.log(all_data);
 });
-
-
-//function to filter data
-// d3.csv('NSF_expenditures_nu.csv').then(function(NSFData){  
-
-    // NSFData.forEach(function(data){
-    //   data.NSFame = +data.NSFName;
-    //   data.AcademicDiscipline = +data.AcademicDiscipline;
-    //   data.TotalRDExpenditures = +data.TotalRDExpenditures;
-    //   data.Year = +data.Year
-    // });
-
-      //   if(last_dis != UniData.dis){
-      //     //Build new trace
-      //     var new_trace = buildTrace(all_dis_data);
-      //     traces.push({"dis": last_dis, "trace": new_trace });
-      //     //Reset list
-      //     all_dis_data = [];
-      //     last_dist = 
-      //     };
-      // }; 
-//});
-//  d3.selectAll("#clickbutton").on("click",filterUni);
-// console.log(NSFData);
-//  NSFData();
-// console.log(data.TotalRDExpenditures);
-// console.log(data.Year);
-
-
-//     function buildTrace(list_of_rows){
-//         var trace = {
-//           x: unpack(list_of_rows, 'Year'),
-//           y: unpack(list_of_rows, 'TotalRDExpenditures'),
-//           type: "scatter"
-//         };
-//         return trace;  
-//     };
-
-
-
-//     var trace = {
-//       x: unpack(rows, 'Year'),
-//       y: unpack(rows, 'TotalRDExpenditures'),
-//       type: "scatter"
-//     };
-
-// var data = [trace]
-
-//     var layout = {
-//         title: 'Med Expenditures',
-//         xaxis: {
-//           range: ['2000', '2018'],
-//           type: 'date'
-//         },
-//         yaxis: {
-//           autorange: true,
-//           type: 'linear'
-//         }
-//     };  
-  
-//   Plotly.plot('scatterchart',data, layout);
