@@ -56,7 +56,7 @@ function renderTableAndChart(){
 };
 
 //1) Download csv
-d3.csv('NSF_expenditures_nu.csv').then(function(NSFData){  
+d3.csv('NSF_expenditures_time.csv').then(function(NSFData){  
   all_data = NSFData;
   renderTableAndChart();
   // console.log(all_data);

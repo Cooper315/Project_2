@@ -1,18 +1,16 @@
-
 Plotly.d3.csv('NSF_expenditures_time.csv', function(err, rows){
-
     function unpack(rows, key) {
         return rows.map(function(row) { return row[key]; });
     }
 
-var AllSchools = unpack(rows, 'NSFName'),
+  var AllSchools = unpack(rows, 'NSFName'),
     AllDisc = unpack(rows, 'AcademicDiscipline'),
     allYear = unpack(rows, 'Year'),
     TotalExp = unpack(rows, 'TotalRDExpenditures'),
     listofSchools = [],
     listofDisc = [],
     currentCountry,
-    currentExp = []
+    currentExp = [],
     currentYear = [],
     TotalExp = [];
 
@@ -22,21 +20,21 @@ var AllSchools = unpack(rows, 'NSFName'),
     }
   }
 
-  // for (var i = 0; i < AllDisc.length; i++ ){
-  //   if (listofDisc.indexOf(AllDisc[i]) === -1 ){
-  //     listofDisc.push(AllDisc[i]);
-  //   }
-  // }
+  for (var i = 0; i < AllDisc.length; i++ ){
+    if (listofDisc.indexOf(AllDisc[i]) === -1 ){
+      listofDisc.push(AllDisc[i]);
+    }
+  }
 
-  // function getDisclData(chosenDisc) {
-  //   for (var i = 0 ; i < AllDisc.length ; i++){
-  //     if (  AllDisc[i] === chosenDisc ) {
-  //     } 
-  //   }
-  // };
+  function getDiscData(chosenDisc) {
+    for (var i = 0 ; i < AllDisc.length ; i++){
+      if (  AllDisc[i] === chosenDisc ) {
+      } 
+    }
+  };
   
   function getSchoolData(chosenSchool) {
-    currentGdp = [];
+    currentExp = [];
     currentYear = [];
     for (var i = 0 ; i < AllSchools.length ; i++){
       if (  AllSchools[i] === chosenSchool ) {
@@ -68,12 +66,17 @@ function setBubblePlot(chosenSchool) {
       title: 'Expenditures for <br>'+ chosenSchool
     };
 
-    Plotly.newPlot('plotdiv', data, layout);
+    var options = {
+      displayModeBar: false
+    };
+
+    Plotly.newPlot('plotdiv', data, layout,options);
 };
   
 var innerContainer = document.querySelector('[data-num="0"'),
     plotEl = innerContainer.querySelector('.plot'),
     schoolSelector = innerContainer.querySelector('.schooldata');
+    discSelector = innerContainer.querySelector('.discdata');
 
 function assignOptions(textArray, selector) {
   for (var i = 0; i < textArray.length;  i++) {
@@ -84,6 +87,8 @@ function assignOptions(textArray, selector) {
 }
 
 assignOptions(listofSchools, schoolSelector);
+assignOptions(listofDisc, discSelector);
+
 
 function updateSchool(){
     setBubblePlot(schoolSelector.value);
